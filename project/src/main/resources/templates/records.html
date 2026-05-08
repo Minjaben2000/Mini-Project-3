@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Records</title>
+</head>
+<body>
+    <h1>Records</h1>
+    <!-- idk how to make rows repeat using the data. i put in an example row-->
+     <table>
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Category</th>
+                <th scope="col">Description</th>
+                <th scope="col">Amount</th>
+                <th scope="col" colspan="2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="item : ${transactions}">
+                <tr>
+                    <td th:text="${item.date}"></td>
+                    <td th:text="${item.category}"></td>
+                    <td th:text="${item.description}"></td>
+                    <td th:text="\$${item.amount}"></td>
+                    <td><form th:action="@{/edit}" method="post">
+                        <input type="hidden" name="transaction" th:value="${item.id}">
+                        <input type="submit" value="Edit">
+                    </form></td>
+                    <td><form th:action="@{/delete}" method="post">
+                        <input type="hidden" name="transaction" th:value="${item.id}">
+                        <input type="submit" value="Delete">
+                    </form></td>
+                </tr>
+            </th:block>
+        </tbody>
+        <tfoot>
+            <form th:action="@{/create}" method="post">
+                <tr>
+                    <th colspan="6">Create new record:</th>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="date" name="date" id="date" required>
+                    </td>
+                    <td>
+                        <input type="text" name="category" id="category" placeholder="Category" required>
+                    </td>
+                    <td>
+                        <input type="text" name="description" id="description" placeholder="Description" required>
+                    </td>
+                    <td>
+                        $<input type="text" inputmode="decimal" pattern="\d+\.\d\d" name="amount" id="amount" placeholder="##.##" required>
+                    </td>
+                    <td colspan="2">
+                        <input type="submit" value="Create">
+                    </td>
+                </tr>
+            </form>
+        </tfoot>
+     </table>
+     <a href="/logout">Log out</a>
+</body>
+</html>

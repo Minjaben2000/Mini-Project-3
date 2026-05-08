@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <div th:if="${param.usernameerror}" class="alert">
+        An account with this username already exists.
+    </div>
+    <div th:if="${param.passworderror}" class="alert">
+        The chosen password does not meet all the requirements.
+    </div>
+    <div th:if="${param.loggedin}" class="alert">
+        You are already logged into an account. <a href="/logout">Log out</a>
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div>
+            <label>Username:</label>
+            <input type="text" name="username" required/>
+        </div>
+        <div>
+            <label>Password:</label>
+            <input type="password" name="password" required/>
+            <div>
+                Password must contain: <ul>
+                    <li>at least 8 characters</li>
+                    <li>at least 1 uppercase letter (A-Z)</li>
+                    <li>at least 1 lowercase letter (a-z)</li>
+                    <li>at least 1 number (0-9)</li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <button type="submit">Register</button>
+        </div>
+        <i>Already have an account? <a href="/login">Log in</a></i>
+    </form>
+</body>
+</html>

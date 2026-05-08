@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Log out</title>
+</head>
+<body>
+    <h2>Log out</h2>
+    <div th:if="${param.loggedout}">
+        You are already logged out.
+    </div>
+    <div th:unless="${param.loggedout}">
+        You have been logged out.
+    </div>
+    <a href="/login">Log in</a>
+</body>
+</html>

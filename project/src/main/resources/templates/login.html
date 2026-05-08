@@ -1,29 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login</title>
 </head>
 <body>
     <h2>Login</h2>
+    <div th:if="${param.error}" class="alert">
+        Invalid username or password.
+    </div>
+    <div th:if="${param.locked}" class="alert">
+        This account has been temporarily locked. Try again later.
+    </div>
+    <div th:if="${param.loggedin}" class="alert">
+        You are already logged into an account. <a href="/logout">Log out</a>
+    </div>
     <form th:action="@{/login}" method="post">
         <div>
             <label>Username:</label>
-            <input type="text" name="username"/>
+            <input type="text" name="username" required/>
         </div>
         <div>
             <label>Password:</label>
-            <input type="password" name="password"/>
+            <input type="password" name="password" required/>
         </div>
         <div>
             <button type="submit">Login</button>
         </div>
-
-        <div th:if="${param.error}">
-            Invalid username or password
-        </div>
-        <div th:if="${param.logout}">
-            You have been logged out
-        </div>
+        <i>Don't have an account? <a href="/register">Create an account</a></i>
     </form>
 </body>
 </html>
