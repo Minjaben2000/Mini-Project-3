@@ -11,6 +11,6 @@
     <div th:unless="${param.loggedout}">
         You have been logged out.
     </div>
-    <a href="/login">Log in</a>
+    <a th:href="@{/login}">Log in</a>
 </body>
 </html>

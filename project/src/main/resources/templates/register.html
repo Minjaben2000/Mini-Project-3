@@ -12,7 +12,7 @@
         The chosen password does not meet all the requirements.
     </div>
     <div th:if="${param.loggedin}" class="alert">
-        You are already logged into an account. <a href="/logout">Log out</a>
+        You are already logged into an account. <a th:href="@{/logout}">Log out</a>
     </div>
     <form th:action="@{/login}" method="post">
         <div>
@@ -32,9 +32,9 @@
             </div>
         </div>
         <div>
-            <button type="submit">Register</button>
+            <input type="submit">Register</input>
         </div>
-        <i>Already have an account? <a href="/login">Log in</a></i>
+        <i>Already have an account? <a th:href="@{/login}">Log in</a></i>
     </form>
 </body>
 </html>

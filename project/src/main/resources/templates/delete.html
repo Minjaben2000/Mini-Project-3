@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Delete</title>
+</head>
+<body>
+    <h2>Delete</h2>
+    <div th:if="${param.error}" class="alert">
+        This transaction has already been deleted.
+    </div>
+    <form th:action="@{/delete}" method="post" id="yes">
+        Are you sure you want to delete this transaction?
+        <input type="hidden" name="transaction" th:value="${param.transaction}">
+        <input type="hidden" name="confirm" value="true">
+    </form>
+    <form th:action="@{/records}" method="post" id="no"></form>
+    <div>
+        <input type="submit" form="yes" value="Yes, delete"></input>
+        <input type="submit" form="no" value="No, cancel"></input>
+    </div>
+</body>
+</html>

@@ -12,7 +12,7 @@
         This account has been temporarily locked. Try again later.
     </div>
     <div th:if="${param.loggedin}" class="alert">
-        You are already logged into an account. <a href="/logout">Log out</a>
+        You are already logged into an account. <a th:href="@{/logout}">Log out</a>
     </div>
     <form th:action="@{/login}" method="post">
         <div>
@@ -24,9 +24,9 @@
             <input type="password" name="password" required/>
         </div>
         <div>
-            <button type="submit">Login</button>
+            <input type="submit">Login</input>
         </div>
-        <i>Don't have an account? <a href="/register">Create an account</a></i>
+        <i>Don't have an account? <a th:href="@{/register}">Create an account</a></i>
     </form>
 </body>
 </html>
